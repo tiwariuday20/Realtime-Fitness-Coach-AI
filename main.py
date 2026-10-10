@@ -47,12 +47,31 @@ def main():
 
         st.info(f"**{exercise}** -- {sets} Sets / {reps} Reps")
 
-        end_session_button = st.button("End Session" , key="end_session_button")
+        end_session_button = st.button("End Session" , key="end_session_button" , width="stretch")
 
         if end_session_button:
           st.session_state["workout_started"] = False
 
-if __name__ == "__main__":
+
+        if workout_started:
+          st.divider()
+
+
+          exercises = st.session_state.get("plan_exercise")
+          total_reps = st.session_state.get("reps")
+          current_set_reps = st.session_state.get("current_set_reps")
+          reps_per_set = st.session_state.get("reps_per_set")
+          sets_completed = st.session_state.get("sets_completed")
+          target_sets = st.session_state.get("target_sets")
+
+          st.subheader("Progress")
+
+          st.metric("Total Reps", f"{total_reps}")
+          st.metric("Current Set Reps", f"{current_set_reps} / {reps_per_set}")
+          st.metric("Sets Completed", f"{sets_completed} / {target_sets}")
+
+
+if __name__ == "__main__": 
   main()
 
 
