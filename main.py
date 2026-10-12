@@ -60,7 +60,7 @@ def main():
 
         st.info(f"**{exercise}** -- {sets} Sets / {reps} Reps")
 
-        end_session_button = st.button("End Session" , key="end_session_button" , width="stretch")
+        end_session_button = st.button("End Workout" , key="end_session_button" , width="stretch")
 
       
         if workout_started:
@@ -111,6 +111,30 @@ def main():
                 st.metric("Torso Angle", f"{st.session_state.torso_angle}°")
                 st.metric("Balance Status", st.session_state.balance_status)
 
+  st.title("AI REALTIME GYM COACH")
+  st.markdown("#### Real-time pose detection with proactive AI voice coaching")
+
+  if not workout_started:
+     st.markdown(
+         """
+            <div style="
+                border: 10px dashed #444;
+                border-radius: 0px;
+                padding: 48px 32px;
+                text-align: center;
+                color: #888;
+                margin-top: 32px;
+                margin-bottom: 32px;
+            ">
+                <h2 style="color:#ccc; margin-bottom:8px;">👈 Set your workout plan</h2>
+                <p style="font-size:1.05rem;">
+                    Choose your exercise, sets and reps in the sidebar,<br>
+                    then click <strong>Start Workout</strong> to activate the camera and AI coach.
+                </p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+     )
 
 if __name__ == "__main__": 
   main()
