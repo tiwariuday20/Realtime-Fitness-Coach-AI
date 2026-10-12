@@ -5,6 +5,7 @@ from services.state.session_defaults import initial_session_defaults
 from services.config.workout_config import EXERCISE_OPTIONS
 from services.ui.style_loader import load_css , inject_local_font 
 from services.persistence.exercise_repository import init_db
+from streamlit_webrtc import webrtc_streamer , WebRtcMode
 
 
 def main():
@@ -135,6 +136,22 @@ def main():
             """,
             unsafe_allow_html=True,
      )
+
+  else:
+     context = webrtc_streamer(
+        key="exercise-analysis",
+        mode=WebRtcMode.SENDRECV,
+        video_processor_factory=None,
+        rtc_configuration={"iceServers":[{"urls":["stun:stun.l.google.com:19302"]}]},
+        media_stream_constraints={
+           "video":True,
+           "audio":False
+        },
+        async_processing=True
+
+     )
+
+    
 
 if __name__ == "__main__": 
   main()
